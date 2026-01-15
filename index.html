@@ -51,3 +51,106 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой интерактивный сайт</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Интерактивный проект</h1>
+        <p>Нажми на кнопку ниже, чтобы увидеть магию!</p>
+    </header>
+
+    <main>
+        <button id="magicButton">Открыть секрет 🔓</button>
+    </main>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Поздравляю! 🎉</h2>
+            <p>Ты только что создал свое первое всплывающее окно на сайте. Это база современной веб-разработки.</p>
+            <img src="https://via.placeholder.com/150" alt="Успех" style="border-radius: 10px; margin-top: 15px;">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* Основные стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 50px;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Стили модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7); /* Темный фон */
+}
+
+.modal-content {
+    background-color: white;
+    color: #333;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    border-radius: 15px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    right: 15px; top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+}
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("magicButton");
+const span = document.getElementsByClassName("close-button")[0];
+
+// Открыть окно при клике на кнопку
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Закрыть окно при клике на крестик
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Закрыть окно, если кликнули вне его области
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
