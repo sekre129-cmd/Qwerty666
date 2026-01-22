@@ -154,3 +154,190 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир Животных</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Удивительный мир животных</h1>
+        <p>Нажми на кнопку, чтобы узнать секреты природы!</p>
+    </header>
+
+    <button id="magicButton">Узнать интересное 🐾</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Выберите животное:</h2>
+            
+            <div class="animal-nav">
+                <button onclick="showAnimal('lion')">Лев</button>
+                <button onclick="showAnimal('elephant')">Слон</button>
+                <button onclick="showAnimal('penguin')">Пингвин</button>
+            </div>
+
+            <div id="animalInfo" class="animal-info">
+                <p>Нажмите на кнопку выше, чтобы прочитать факт.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: #2c3e50; /* Темный солидный фон */
+    color: white;
+}
+
+#magicButton {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: white;
+    color: #333;
+    margin: 10% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.animal-nav {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.animal-nav button {
+    background: #e67e22;
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.animal-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #ecf0f1;
+    border-radius: 10px;
+    min-height: 100px;
+    line-height: 1.6;
+}
+
+.close-button {
+    position: absolute;
+    right: 20px; top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("magicButton");
+const span = document.getElementsByClassName("close-button")[0];
+const infoBox = document.getElementById("animalInfo");
+
+// Данные о животных
+const animalData = {
+    lion: "🦁 <b>Лев:</b> Рык взрослого льва слышен на расстоянии до 8 километров! Они спят по 20 часов в сутки.",
+    elephant: "🐘 <b>Слон:</b> Слоны — единственные животные, которые не умеют прыгать. А еще у них отличная память.",
+    penguin: "🐧 <b>Пингвин:</b> Папуасские пингвины — самые быстрые пловцы, они могут достигать скорости 36 км/ч!"
+};
+
+// Открытие окна
+btn.onclick = () => modal.style.display = "block";
+span.onclick = () => modal.style.display = "none";
+
+// Функция для показа инфы
+function showAnimal(animal) {
+    infoBox.innerHTML = animalData[animal];
+    infoBox.style.backgroundColor = "#dff9fb"; // Немного меняем цвет при выборе
+}
+
+window.onclick = (event) => {
+    if (event.target == modal) modal.style.display = "none";
+}
+<div id="animalInfo" class="animal-info">
+    <p>Нажмите на кнопку выше, чтобы узнать секреты природы!</p>
+    <img id="animalImage" src="" alt="" style="display:none; width:100%; max-width:300px; border-radius:10px; margin-top:15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+</div>
+const modal = document.getElementById("myModal");
+const btn = document.getElementById("magicButton");
+const span = document.getElementsByClassName("close-button")[0];
+const infoBox = document.querySelector("#animalInfo p"); // Берем текст
+const infoImg = document.getElementById("animalImage"); // Берем картинку
+
+// Данные: текст + ссылки на фото
+const animalData = {
+    lion: {
+        text: "🦁 <b>Лев:</b> Рык взрослого льва слышен на расстоянии до 8 километров! Они спят по 20 часов в сутки.",
+        img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=400"
+    },
+    elephant: {
+        text: "🐘 <b>Слон:</b> Слоны — единственные животные, которые не умеют прыгать. А еще у них отличная память.",
+        img: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=400"
+    },
+    penguin: {
+        text: "🐧 <b>Пингвин:</b> Папуасские пингвины — самые быстрые пловцы, они могут достигать скорости 36 км/ч!",
+        img: "https://images.unsplash.com/photo-1517783999520-f068d3434bb3?q=80&w=400"
+    }
+};
+
+btn.onclick = () => modal.style.display = "block";
+span.onclick = () => modal.style.display = "none";
+
+function showAnimal(animal) {
+    // Обновляем текст
+    infoBox.innerHTML = animalData[animal].text;
+    
+    // Обновляем картинку и показываем её
+    infoImg.src = animalData[animal].img;
+    infoImg.style.display = "inline-block"; 
+    
+    // Добавим легкую анимацию появления
+    infoImg.style.opacity = 0;
+    setTimeout(() => { infoImg.style.opacity = 1; }, 50);
+}
+
+window.onclick = (event) => {
+    if (event.target == modal) modal.style.display = "none";
+}
+#animalImage {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.animal-info p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
